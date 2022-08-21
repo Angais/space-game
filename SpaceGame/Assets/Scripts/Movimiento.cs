@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor.SceneManagement;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class Movimiento : MonoBehaviour
@@ -65,7 +65,7 @@ public class Movimiento : MonoBehaviour
     {
         transform.Rotate(0, 0, velocidadGiro * Time.deltaTime * 100);
 
-        if (Input.GetKey(KeyCode.W))
+        if (Input.GetKey(KeyCode.W) || Input.touchCount > 0)
             Mover();
 
         if (shakeDuration > 0)
@@ -101,7 +101,7 @@ public class Movimiento : MonoBehaviour
         else if(TiempoReaparecer <= 0)
         {
             //recarga este nivel
-            EditorSceneManager.LoadScene(EditorSceneManager.GetActiveScene().buildIndex);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
         
         if (GolpesMaximos - Golpes > 0)
@@ -159,19 +159,19 @@ public class Movimiento : MonoBehaviour
     public void MenuPrincipal()
     {
         Debug.Log("Menu");
-        EditorSceneManager.LoadScene(0);
+        SceneManager.LoadScene(0);
     }
 
     public void SiguienteNivel()
     {
         Debug.Log("Siguiente");
-        if (EditorSceneManager.GetActiveScene().buildIndex < 12)
-            EditorSceneManager.LoadScene(EditorSceneManager.GetActiveScene().buildIndex + 1);
+        if (SceneManager.GetActiveScene().buildIndex < 12)
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     public void ReiniciarNivel()
     {
-        EditorSceneManager.LoadScene(EditorSceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
 }
