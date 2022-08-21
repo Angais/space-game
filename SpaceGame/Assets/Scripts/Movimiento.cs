@@ -159,11 +159,14 @@ public class Movimiento : MonoBehaviour
     public void MenuPrincipal()
     {
         Debug.Log("Menu");
+        EditorSceneManager.LoadScene(0);
     }
 
     public void SiguienteNivel()
     {
         Debug.Log("Siguiente");
+        if (EditorSceneManager.GetActiveScene().buildIndex < 12)
+            EditorSceneManager.LoadScene(EditorSceneManager.GetActiveScene().buildIndex + 1);
     }
 
     public void ReiniciarNivel()
