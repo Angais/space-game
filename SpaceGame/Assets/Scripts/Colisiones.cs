@@ -47,5 +47,11 @@ public class Colisiones : MonoBehaviour
         lowerEdge.transform.SetParent(padre.transform);
         leftEdge.transform.SetParent(padre.transform);
         rightEdge.transform.SetParent(padre.transform);
+        padre.transform.tag = "Pared";
+        upperEdge.transform.tag = "Pared";
+        lowerEdge.transform.tag = "Pared";
+        leftEdge.transform.tag = "Pared";
+        rightEdge.transform.tag = "Pared";
+
     }
 }

@@ -1,13 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor.SceneManagement;
+using TMPro;
 
 public class Movimiento : MonoBehaviour
 {
+    [SerializeField] private TextMeshProUGUI textoGolpes;
+    [SerializeField] private TextMeshProUGUI textoGolpesTotales;
+    [SerializeField] private GameObject Panel;
+    [SerializeField] private int Golpes;
+    [SerializeField] private int GolpesMaximos;
+    [SerializeField] private float TiempoReaparecer;
     private Rigidbody2D rb;
     [SerializeField] private float velocidad;
     [SerializeField] private float velocidadGiro;
-
+    public Sprite[] Skins = { null, null, null, null, null };
+    public int Skin;
+    private SpriteRenderer renderer;
+    private SpriteRenderer rendererMeta;
+    private bool Perdio = false;
     // Transform of the camera to shake. Grabs the gameObject's transform
     // if null.
     public Transform camTransform;
@@ -23,13 +35,29 @@ public class Movimiento : MonoBehaviour
     public float tiempo = 0.1f;
     public Transform PolvoPrefab;
     public TrailRenderer trail;
-
-
+    public Color[] coloresParticulas = { Color.white, Color.white, Color.white };
+    
+    
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         originalPos = camTransform.localPosition;
+        renderer = GetComponent<SpriteRenderer>();
+        rendererMeta = GameObject.FindGameObjectWithTag("Respawn").GetComponent<SpriteRenderer>();
+        if(PlayerPrefs.HasKey("Skin"))
+        {
+            Skin = PlayerPrefs.GetInt("Skin");
+        }
+        if (Panel.activeSelf)
+        {
+            Panel.SetActive(false);
+        }
+
+        if(TiempoReaparecer <= 0)
+        {
+            TiempoReaparecer = 2;
+        }
     }
 
     // Update is called once per frame
@@ -56,6 +84,36 @@ public class Movimiento : MonoBehaviour
             trail.emitting = true;
         else
             trail.emitting = false;
+
+
+        if (Skins[Skin] != renderer.sprite || Skins[Skin] != rendererMeta.sprite)
+        {
+            renderer.sprite = Skins[Skin];
+            rendererMeta.sprite = Skins[Skin];
+            PlayerPrefs.SetInt("Skin", Skin);
+            PlayerPrefs.Save();
+        }
+
+        if(Perdio && TiempoReaparecer > 0)
+        {
+            TiempoReaparecer -= Time.deltaTime;
+        }
+        else if(TiempoReaparecer <= 0)
+        {
+            //recarga este nivel
+            EditorSceneManager.LoadScene(EditorSceneManager.GetActiveScene().buildIndex);
+        }
+        
+        if (GolpesMaximos - Golpes > 0)
+            textoGolpes.SetText("Golpes Máximos: " + (GolpesMaximos - Golpes));
+        else
+        {
+            Perdio = true;
+            textoGolpes.SetText("Perdiste ;(\n" +"Reiniciando en " + Mathf.RoundToInt(TiempoReaparecer) + " segundos");
+            Debug.Log("Perdiste");
+            
+        }
+        
     }
 
     private void Mover()
@@ -65,14 +123,52 @@ public class Movimiento : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (rb.velocity.magnitude > sensibilidad)
+        if (rb.velocity.magnitude > sensibilidad && !Perdio)
         {
+            Golpes++;
             shakeDuration += tiempo;
             if(collision.transform.CompareTag("Meteorito"))
             {
-                Instantiate(PolvoPrefab, collision.GetContact(0).point, Quaternion.identity);
+                ParticleSystem part = Instantiate(PolvoPrefab, collision.GetContact(0).point, Quaternion.identity).GetComponent<ParticleSystem>();
+                part.startColor = coloresParticulas[0];
             }
+            if (collision.transform.CompareTag("Pared"))
+            {
+                ParticleSystem part = Instantiate(PolvoPrefab, collision.GetContact(0).point, Quaternion.identity).GetComponent<ParticleSystem>();
+                part.startColor = coloresParticulas[1];
+            }
+            if (collision.transform.CompareTag("Finish"))
+            {
+                ParticleSystem part = Instantiate(PolvoPrefab, collision.GetContact(0).point, Quaternion.identity).GetComponent<ParticleSystem>();
+                part.startColor = coloresParticulas[2];
+            }
+        }
 
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.transform.CompareTag("Finish") && !Perdio)
+        {
+            Debug.Log("Felicidades!");
+            Panel.SetActive(true);
+            textoGolpesTotales.SetText("Golpes Totales: " + Golpes + "/" + GolpesMaximos);
         }
     }
+    
+    public void MenuPrincipal()
+    {
+        Debug.Log("Menu");
+    }
+
+    public void SiguienteNivel()
+    {
+        Debug.Log("Siguiente");
+    }
+
+    public void ReiniciarNivel()
+    {
+        EditorSceneManager.LoadScene(EditorSceneManager.GetActiveScene().buildIndex);
+    }
+
 }
