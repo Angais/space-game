@@ -248,9 +248,9 @@ MonoBehaviour:
   textoGolpesTotales: {fileID: 705811894}
   Panel: {fileID: 1678032765}
   Golpes: 0
-  GolpesMaximos: 3
+  GolpesMaximos: 1
   TiempoReaparecer: 2
-  velocidad: 5
+  velocidad: 7.5
   velocidadGiro: 1
   Skins:
   - {fileID: 21300000, guid: c4297c6f44a7c3944a06c2414c4df056, type: 3}
@@ -2043,9 +2043,9 @@ RectTransform:
   m_Father: {fileID: 816169298}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 65, y: -50}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -50, y: -50}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2135069152

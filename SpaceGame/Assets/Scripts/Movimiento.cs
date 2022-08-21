@@ -13,7 +13,7 @@ public class Movimiento : MonoBehaviour
     [SerializeField] private int GolpesMaximos;
     [SerializeField] private float TiempoReaparecer;
     private Rigidbody2D rb;
-    [SerializeField] private float velocidad;
+    [SerializeField] private float velocidad = 7.5f;
     [SerializeField] private float velocidadGiro;
     public Sprite[] Skins = { null, null, null, null, null };
     public int Skin;
@@ -153,6 +153,8 @@ public class Movimiento : MonoBehaviour
             Debug.Log("Felicidades!");
             Panel.SetActive(true);
             textoGolpesTotales.SetText("Golpes Totales: " + Golpes + "/" + GolpesMaximos);
+            PlayerPrefs.SetInt((SceneManager.GetActiveScene().buildIndex + 1).ToString(), 1);
+            PlayerPrefs.Save();
         }
     }
     

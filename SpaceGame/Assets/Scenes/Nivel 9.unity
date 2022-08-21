@@ -225,8 +225,8 @@ Transform:
   m_GameObject: {fileID: 45034220}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -3, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1359353833}
   m_Father: {fileID: 0}
@@ -248,9 +248,9 @@ MonoBehaviour:
   textoGolpesTotales: {fileID: 705811894}
   Panel: {fileID: 1678032765}
   Golpes: 0
-  GolpesMaximos: 3
+  GolpesMaximos: 2
   TiempoReaparecer: 5
-  velocidad: 5
+  velocidad: 7.5
   velocidadGiro: 1
   Skins:
   - {fileID: 21300000, guid: c4297c6f44a7c3944a06c2414c4df056, type: 3}
@@ -984,6 +984,7 @@ GameObject:
   - component: {fileID: 1284028298}
   - component: {fileID: 1284028297}
   - component: {fileID: 1284028300}
+  - component: {fileID: 1284028301}
   m_Layer: 0
   m_Name: Meteorito (4)
   m_TagString: Meteorito
@@ -1090,6 +1091,22 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.32
+--- !u!114 &1284028301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1284028296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bec2496857f2ba4f916683b8d337581, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  "tama\xF1oOriginal": 1
+  "tama\xF1oMaximo": 5
+  velocidadCrecimiento: 1
+  creciendo: 1
 --- !u!1 &1311028543
 GameObject:
   m_ObjectHideFlags: 0
@@ -1354,6 +1371,7 @@ GameObject:
   - component: {fileID: 1518393309}
   - component: {fileID: 1518393308}
   - component: {fileID: 1518393311}
+  - component: {fileID: 1518393312}
   m_Layer: 0
   m_Name: Meteorito (2)
   m_TagString: Meteorito
@@ -1460,6 +1478,22 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.32
+--- !u!114 &1518393312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1518393307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bec2496857f2ba4f916683b8d337581, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  "tama\xF1oOriginal": 1
+  "tama\xF1oMaximo": 5
+  velocidadCrecimiento: 1
+  creciendo: 1
 --- !u!1 &1626552797
 GameObject:
   m_ObjectHideFlags: 0
@@ -1472,6 +1506,7 @@ GameObject:
   - component: {fileID: 1626552799}
   - component: {fileID: 1626552798}
   - component: {fileID: 1626552801}
+  - component: {fileID: 1626552802}
   m_Layer: 0
   m_Name: Meteorito
   m_TagString: Meteorito
@@ -1578,6 +1613,22 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.32
+--- !u!114 &1626552802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1626552797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bec2496857f2ba4f916683b8d337581, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  "tama\xF1oOriginal": 1
+  "tama\xF1oMaximo": 5
+  velocidadCrecimiento: 1
+  creciendo: 1
 --- !u!1 &1678032765
 GameObject:
   m_ObjectHideFlags: 0
@@ -1841,8 +1892,8 @@ Transform:
   m_GameObject: {fileID: 1968217531}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 3.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 704609910}
   m_Father: {fileID: 0}
@@ -2043,9 +2094,9 @@ RectTransform:
   m_Father: {fileID: 816169298}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 65, y: -50}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -50, y: -50}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2135069152
