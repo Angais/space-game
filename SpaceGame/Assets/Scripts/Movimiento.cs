@@ -71,19 +71,17 @@ public class Movimiento : MonoBehaviour
         if (shakeDuration > 0)
         {
             camTransform.localPosition = originalPos + Random.insideUnitSphere * shakeAmount;
-
+            trail.emitting = false;
             shakeDuration -= Time.deltaTime * decreaseFactor;
         }
         else
         {
             shakeDuration = 0f;
             camTransform.localPosition = originalPos;
+            trail.emitting = true;
         }
 
-        if (rb.velocity.magnitude > 0)
-            trail.emitting = true;
-        else
-            trail.emitting = false;
+
 
 
         if (Skins[Skin] != renderer.sprite || Skins[Skin] != rendererMeta.sprite)
@@ -126,6 +124,7 @@ public class Movimiento : MonoBehaviour
         if (rb.velocity.magnitude > sensibilidad && !Perdio)
         {
             Golpes++;
+            shakeAmount = 0.065f * rb.velocity.magnitude;
             shakeDuration += tiempo;
             if(collision.transform.CompareTag("Meteorito"))
             {
@@ -142,6 +141,9 @@ public class Movimiento : MonoBehaviour
                 ParticleSystem part = Instantiate(PolvoPrefab, collision.GetContact(0).point, Quaternion.identity).GetComponent<ParticleSystem>();
                 part.startColor = coloresParticulas[2];
             }
+            ParticleSystem parti = Instantiate(PolvoPrefab, Vector3.zero, Quaternion.identity, this.transform).GetComponent<ParticleSystem>();
+            parti.gameObject.transform.localPosition = new Vector3(0, -0.4f, 0);
+            parti.startColor = Color.yellow;
         }
 
     }
