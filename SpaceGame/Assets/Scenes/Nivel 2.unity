@@ -248,8 +248,9 @@ MonoBehaviour:
   textoGolpesTotales: {fileID: 705811894}
   Panel: {fileID: 1678032765}
   Golpes: 0
-  GolpesMaximos: 1
+  GolpesMaximos: 50000
   TiempoReaparecer: 2
+  rb: {fileID: 0}
   velocidad: 7.5
   velocidadGiro: 1
   Skins:
@@ -1005,6 +1006,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocidad: 1
+  multiplicadorJugador: 1.5
+  Planetas:
+  - {fileID: 456008473, guid: 2d2e2a704aca69f4aa7c436862c30d23, type: 3}
+  - {fileID: 1377878677, guid: 2d2e2a704aca69f4aa7c436862c30d23, type: 3}
+  - {fileID: -658802327, guid: 2d2e2a704aca69f4aa7c436862c30d23, type: 3}
+  - {fileID: 653181563, guid: 2d2e2a704aca69f4aa7c436862c30d23, type: 3}
+  - {fileID: 1697586327, guid: 2d2e2a704aca69f4aa7c436862c30d23, type: 3}
+  PlanetaPref: {fileID: 1174470830693821852, guid: 86ab179942df6f94697ee35cc5fa4b9b, type: 3}
+  Tiempo: 0
 --- !u!64 &1311028545
 MeshCollider:
   m_ObjectHideFlags: 0

@@ -12,7 +12,7 @@ public class Movimiento : MonoBehaviour
     [SerializeField] private int Golpes;
     [SerializeField] private int GolpesMaximos;
     [SerializeField] private float TiempoReaparecer;
-    private Rigidbody2D rb;
+    public Rigidbody2D rb;
     [SerializeField] private float velocidad = 7.5f;
     [SerializeField] private float velocidadGiro;
     public Sprite[] Skins = { null, null, null, null, null };
@@ -124,7 +124,7 @@ public class Movimiento : MonoBehaviour
         if (rb.velocity.magnitude > sensibilidad && !Perdio)
         {
             Golpes++;
-            shakeAmount = 0.065f * rb.velocity.magnitude;
+            shakeAmount = 0.03f * rb.velocity.magnitude;
             shakeDuration += tiempo;
             if(collision.transform.CompareTag("Meteorito"))
             {
